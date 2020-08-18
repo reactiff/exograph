@@ -1,0 +1,234 @@
+/* exograph.css */
+
+.exograph .graph-node {
+    border: 0px solid transparent;
+}
+
+.exograph > .graph-node.flex.row > div:not(:last-child) {
+    margin-right: 15px;
+}
+
+.exograph > .flex.column > div:not(:last-child) {
+    margin-bottom: 15px;
+} 
+
+
+/* Override right padding for root container so the menu gap is consistent */
+.exograph .graph { 
+    /* padding: 15px;  */
+    margin: 0; 
+    background-color: #111;
+} 
+
+.canvas {
+    justify-content: center;
+    align-items: center;
+}
+
+.placeholder {
+    /* width: 100%!important; */
+    box-sizing: border-box;
+}
+
+.graph-node:not(.menu-item) .placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.exograph .menu > div {
+    padding: unset;
+}
+
+.exograph-menu .placeholder {
+    width: 100%!important;
+    padding-top: 100%!important;
+}
+
+.menu-item {
+    position: relative;
+}
+
+.exograph .draggable {
+    cursor: grab;
+}
+
+.draggable.--dragging {
+    cursor: grabbing;
+    background-color: rgba(0,64,0,0.2);
+    /* border: 1px solid #00ff00; */
+}
+
+
+.exograph .allow-drop > .graph-node {
+    background-color: rgba(128,128,128,0.1);
+}
+.dark-mode .exograph .allow-drop > .graph-node {
+    background-color: rgba(0,0,0,0.2);
+}
+
+.exograph .graph-node.container {
+    background-color: rgba(128,128,128,0.5);
+}
+
+.dark-mode .exograph .graph-node.container {
+    background-color: rgba(64,64,64,0.1);
+}
+
+.dark-mode .exograph :not(.exograph-menu) .graph-node.widget {
+    background-color: rgba(0,0,0,0.8);
+}
+.dark-mode .exograph .exograph-menu .graph-node.widget {
+    background-color: transparent;
+}
+
+.exograph .allow-drop.--active {
+    background-color: #588ec3;
+}
+.dark-mode .exograph .allow-drop.--active {
+    background-color: #284867;
+}
+
+.dark-mode .exograph .graph-node.widget.allow-drop.--active {
+    background-color: rgba(0,128,0,0.1);
+}
+
+
+/* CONTAINERS */
+
+.graph-node.container {
+    margin: 0;
+}
+.graph-container { margin: 0 }
+.row-container {}
+.column-container {}
+.flex.row > .cell-container {
+    min-width: 200px;
+}
+.flex.column > .cell-container {
+    min-height: 200px;
+}
+.graph-node.growth-container {}
+
+.flex.row > .graph-node:not(:last-child) {
+    margin-right: 1px;
+}
+.flex.column > .graph-node:not(:last-child) {
+    margin-bottom: 1px;
+}
+
+.watermark {
+    opacity: 0.2;
+}
+
+.flex.wrap > .graph-node {
+    width: calc(50% - 2px);
+}
+
+
+/* WORKSPACE */
+
+.accordion {
+    margin-top: 1px;
+    width: 240px;
+}
+.accordion-section {
+    box-shadow: none!important;
+}
+.accordion-section-content {
+    padding: 0px!important;
+    padding-top: 1px!important;
+}
+
+.accordion-section.active .accordion-section-header {
+    background-color: rgba(128,128,128,0.5)!important;
+}
+.accordion-section:not(.active) .accordion-section-header:hover {
+    background-color: rgba(128,128,128,0.4)!important;
+}
+
+.flex.wrap > .graph-node {
+    width: calc(50% - 0px);
+    /* margin: 1px; */
+}
+
+.accordion {
+    min-width: 280px;
+}
+
+.accordion-section-content .MuiPaper-root {
+    margin-bottom: 0px!important;
+}
+
+.hover-highlight {
+    color: rgba(255,255,255,0.4);
+}
+.hover-highlight:hover {
+    transition: all 0.2s linear;
+    background-color: #1976d2;
+    color: rgba(255,255,255,1);
+}
+.hover-highlight:hover .solid {
+    transition: all 0.2s linear;
+    background-color: rgba(255,255,255,1);
+}
+
+.draggable.--dragging {
+    /* border: none!important; */
+    background-color: transparent!important;
+}
+
+.allow-drop.--active {
+    /* background-color: rgba(0,255,196,0.8)!important; */
+    background-color: #1976d2;
+    /* border: 1px solid rgba(110,255,128,1)!important; */
+}
+
+.menu {
+
+}
+.menu .items > div:not(:last-child) {
+    margin-bottom: unset;
+}
+
+.info-pane {
+    height: 140px;
+    padding: 5px 7px!important;
+}
+.info-pane p {
+    font-size: 0.75rem;
+    font-weight: 100;
+    color: #bbb;
+}
+
+.placeholder img {
+    width: calc(100% - 50px);
+    filter: invert(1);
+    opacity: 0.4;
+    margin: 25px;
+}
+
+.hover-highlight:hover img {
+    transition: all 0.2s linear;
+    opacity: 1;
+}
+
+
+.gauge-labels {}
+.gauge-name-label {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    bottom: 13px;
+    font-size: 0.7rem;
+    color: #ffffff88;
+}
+.gauge-value-label {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    bottom: 30px;
+    font-size: 2em;
+}

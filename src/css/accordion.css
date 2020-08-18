@@ -1,0 +1,52 @@
+.accordion {
+    min-width: 280px;
+}
+/* Style the buttons that are used to open and close the accordion panel */
+.accordion-section-header {
+    background-color: #3c3c3c;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    color: #fff;
+}
+
+.accordion-section {
+    box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12);
+}
+  
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.accordion-section.active .accordion-section-header, 
+.accordion-section-header:hover {
+    background-color: rgba(128,128,128,0.3);
+}
+  
+/* Style the accordion panel. Note: hidden by default */
+.accordion-section-content {
+    background-color: #333;
+    max-height: 0;
+    padding-top: 1px;
+    overflow: hidden;
+}
+
+.accordion-section.active .accordion-section-content { 
+    max-height: 9999px;
+    position: relative;
+    padding: 15px;
+}
+
+.padded {
+    /* padding: 15px!important; */
+}
+
+.padded > .flex.column > div:not(:last-child) {
+    /* margin-bottom: 15px!important; */
+} 
+
+/* For MaterialUI */
+ 
+ .accordion-section-content .MuiPaper-root {
+     margin-bottom: 15px;
+ }

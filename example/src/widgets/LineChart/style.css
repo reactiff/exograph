@@ -1,0 +1,17 @@
+.custom-tooltip tr td:first-child {
+    text-align: right;
+    font-weight: bold;
+    opacity: 0.5;
+}
+.custom-tooltip tr td:last-child {
+    text-align: right;
+}
+
+.recharts-legend-wrapper {
+    font-size: 0.8em;
+    bottom: 20px!important;
+}
+
+.recharts-legend-wrapper ul {
+    text-align: right!important;
+}
