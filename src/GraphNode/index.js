@@ -1,15 +1,12 @@
 import React from 'react'
 import {useEffect, useState, useRef} from 'react'
-// import CircularBuffer from '../@xog/data-services/CircularBuffer';
+import GraphNodeController from '../GraphNodeController';
+import IDraggable from '../IDraggable';
+import IDropTarget from '../IDropTarget';
+import { useGraphContext } from '../GraphContextProvider';
+import { useMenuContext } from '../MenuContextProvider';
 
-import GraphNodeController from './GraphNodeController';
-import IDraggable from './IDraggable';
-import IDropTarget from './IDropTarget';
-
-import { useGraphContext } from './GraphContextProvider';
-import { useMenuContext } from './MenuContextProvider';
-
-const BUFFER_SIZE = 500;
+import createProjectedElement from './createProjectedElement';
 
 const GraphNode = (props) => {
 
@@ -23,23 +20,39 @@ const GraphNode = (props) => {
     } else {
         childrenInitData = { datasources: {}, nodes: [] };
     }
-    
-    const [children, setChildren] = useState(childrenInitData);
 
-    const [isDropZone, setIsDropZone] = useState(false)
+    const [children, setChildren] = useState(childrenInitData);
+    const [projectedElement, setProjectedElement] = useState(null);
+    
+    const [isDropTarget, setIsDropTarget] = useState(false)
     const [isDragging, setIsDragging] = useState(false)
     
-    const mutable = useRef({});
+    const mutable = useRef({}).current;
     const [data, setData] = useState({});
     
+    
+
     // Item data and callbacks
     const item = {
         ...props, 
         children,
-        activateDropZone: (active, cursorPos) => {
-            setIsDropZone(active);
+        deleteProjection: () => {
+            if (mutable.projectElement) {
+                mutable.projectElement = null;
+                setProjectedElement(null);
+            } 
         },
-        setIsDragging,
+        projectElement: (rect, cursor, payload) => {
+            const projection = createProjectedElement({ cursor, payload, rect, children, meta: props.meta });
+            if (!mutable.projectElement || mutable.projectElement.index !== projection.index) {
+                mutable.projectElement = projection;
+                setProjectedElement(projection);
+            }
+            return projection.index;
+        },
+        setIsDragging: (value) => {
+            setIsDragging(value);
+        },
         setChildren: (ch) => {
             setChildren(ch);
         },
@@ -53,10 +66,8 @@ const GraphNode = (props) => {
 
     node.setItem(item);
     node.rendered = true;
-
-    if (!node.item.classesForElement) debugger;
     
-    const elementClasses = node.item.classesForElement ? node.item.classesForElement({siblings: props.siblings}) : [];
+    const elementClasses = node.item.classesForElement ? node.item.classesForElement({siblings: props.siblings + props.projectedSiblings}) : [];
     const classes = ['graph-node'].concat(elementClasses);
 
     if (isInsideMenu) classes.push('menu-item');
@@ -81,7 +92,7 @@ const GraphNode = (props) => {
 
     // dynamic state classes
 
-    if(isDropZone) classes.push('--active');
+    if(isDropTarget) classes.push('--active');
     if(isDragging) classes.push('--dragging');
 
     useEffect(() => {
@@ -103,7 +114,9 @@ const GraphNode = (props) => {
     }
 
     /////////////////////////////////////////////////////////
-    // custom render
+    // Render meta element
+
+   
 
     const renderedChildren = children.nodes.map((child, index) => {
         return <GraphNode 
@@ -118,11 +131,17 @@ const GraphNode = (props) => {
             level={item.level + 1}
             placeholder={child.placeholder}
             siblings={children.nodes.length - 1}
+            projectedSiblings={projectedElement ? 1 : 0}
             parent={node}
             nodeInstance={child.nodeInstance}
             sequence={child.sequence}
-        />
+        />;
     });
+    
+    if (projectedElement) {
+        renderedChildren.splice(projectedElement.index, 0, projectedElement.render());
+    };
+
 
     const extendedProps = {
         ...basicProps, 
@@ -130,7 +149,7 @@ const GraphNode = (props) => {
         siblings: props.siblings,
         children: renderedChildren, 
         datasources: children.datasources, 
-        scope: mutable.current, 
+        scope: mutable, 
         graphContext,
         setData,
         data,

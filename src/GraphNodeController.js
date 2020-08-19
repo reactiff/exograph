@@ -52,7 +52,7 @@ export default class GraphNodeController {
         this.dragEvents.onDragEnd();
     }
 
-    addChild(node) { 
+    addChild(node, projectedIndex) { 
         
         let newItem;
 
@@ -62,7 +62,7 @@ export default class GraphNodeController {
             newItem = { 
                 ...other,
                 guid: uuid(),
-                sequence: this.childNodes.length,
+                // sequence: this.childNodes.length,
             };
 
             let instance = new GraphNodeController(this.context,
@@ -92,7 +92,8 @@ export default class GraphNodeController {
                 }
                 else {
                     // ... while children is an array
-                    newState.nodes = prev.nodes.concat([newItem]);
+                    newState.nodes = [...prev.nodes];
+                    newState.nodes.splice(projectedIndex, 0, newItem);
                 }
     
                 return newState;
