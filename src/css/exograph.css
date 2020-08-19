@@ -119,6 +119,10 @@
     margin-bottom: 1px;
 }
 
+.projected-element-placeholder {
+    background-color: #1976d2!important;
+}
+
 .watermark {
     opacity: 0.2;
 }
@@ -232,3 +236,7 @@
     bottom: 30px;
     font-size: 2em;
 }
+
+
+
+

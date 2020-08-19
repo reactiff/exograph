@@ -20,7 +20,7 @@ export default () => (
             render={(props, ref) => {
                 const { data, graphContext, parent, siblings, children, datasources, scope, setData, ...other } = props;
                 return <div ref={ref} {...other}>
-                    { children.length ? children : <LiteralWatermark>Row Layout Container</LiteralWatermark> }
+                    { children.length ? children : <LiteralWatermark>Row</LiteralWatermark> }
                 </div> 
             }} 
             meta={{
@@ -46,7 +46,7 @@ export default () => (
             render={(props, ref) => {
                 const { data, graphContext, parent, siblings, children, datasources, scope, setData, ...other } = props;
                 return <div ref={ref} {...other}>
-                    { children.length ? children : <LiteralWatermark>Column Layout Container</LiteralWatermark> }
+                    { children.length ? children : <LiteralWatermark>Col</LiteralWatermark> }
                 </div> 
                 
             }} 

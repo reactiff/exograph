@@ -30,7 +30,16 @@ export default (props) => {
         scope.nodesById[identifier] = node;
     };
 
-    const activateDropZones = (valueFor) => scope.nodes.map(n => n.item.activateDropZone(valueFor(n)));
+    //
+    const activateDropZones = (isActive, e) => scope.nodes.forEach(n => {
+        if (isActive(n)) {
+            // return n.item.activateDropZone(n.rect, e, scope.payload);
+        }
+        n.item.deleteProjection();
+    });
+
+    const projectElement = (e) => scope.dropTarget.item.projectElement(scope.dropTarget.rect, e, scope.payload);
+
 
     const findDropTarget = (e) => {
 
@@ -62,10 +71,10 @@ export default (props) => {
                 return false;
             }
             if (!n.item.allowDrop) return false;
-            const ok = isCompatibleTarget(n);
-            return ok;
+            return isCompatibleTarget(n);
         });
 
+        
         if (layers.length === 0) {
             scope.dropTarget = null; 
             activateDropZones(() => false);
@@ -76,9 +85,12 @@ export default (props) => {
         const active = layers[0];
 
         if (!scope.dropTarget || scope.dropTarget.guid !== active.guid) {
-            activateDropZones(n => n.guid === active.guid);
+            activateDropZones(n => n.guid === active.guid, e);
             scope.dropTarget = active;
         }
+        
+        scope.projectedIndex = projectElement(e);
+        
         
         return scope.dropTarget;
     };
@@ -131,7 +143,7 @@ export default (props) => {
                             onDragOver: (target) => {},
                             onDrop: () => {
                                 if (!scope.dropTarget) return;
-                                scope.dropTarget.addChild(scope.payload);
+                                scope.dropTarget.addChild(scope.payload, scope.projectedIndex);
                                 scope.dropTarget = null;
                                 scope.payload.endDrag();
                                 activateDropZones(() => false);
