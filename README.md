@@ -49,4 +49,4 @@ export default (props) => {
 
 ## License
 
-MIT © [nycdude777](https://github.com/nycdude777)
+MIT © [reactiff](https://github.com/reactiff)
