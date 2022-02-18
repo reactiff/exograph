@@ -1,0 +1,73 @@
+/* exograph.css */
+
+.exograph .graph-node {
+    /* position: relative; */
+    border: 1px solid transparent;
+}
+
+.exograph > .graph-node.flex.row > div:not(:last-child) {
+    margin-right: 15px;
+}
+
+.exograph > .flex.column > div:not(:last-child) {
+    margin-bottom: 15px;
+} 
+
+.graph-node.container {
+    padding: 15px;
+}
+/* Override right padding for root container so the menu gap is consistent */
+.exograph .graph { 
+    padding: 15px; 
+} 
+
+.canvas {
+    justify-content: center;
+    align-items: center;
+}
+
+.placeholder {
+    /* width: 100%!important; */
+    box-sizing: border-box;
+}
+
+.graph-node:not(.menu-item) .placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.menu div {
+    padding: unset;
+}
+
+.exograph-menu .placeholder {
+    width: 100%!important;
+    padding-top: 100%!important;
+}
+
+.menu-item {
+    position: relative;
+}
+
+.exograph .draggable {
+    cursor: grab;
+}
+
+.draggable.--dragging {
+    cursor: grabbing;
+    background-color: rgba(0,64,0,0.2);
+    border: 1px solid #00ff00;
+}
+
+
+.exograph .allow-drop > .graph-node {
+    background-color: rgba(128,128,128,0.1);
+    
+    /* border: 1px dashed #00ff0022; */
+}
+.exograph div.allow-drop.--active {
+    border-color: yellow;
+}

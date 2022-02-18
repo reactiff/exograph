@@ -1,0 +1,7 @@
+.menu {
+    padding: 15px;
+}
+
+.menu .items > div:not(:last-child) {
+    margin-bottom: 15px;
+}
