@@ -37,16 +37,6 @@ export default (props) => {
 }
 ```
 
-
-
-
-
-
-
-
-
-
-
 ## License
 
 MIT © [Rick Ellis](https://github.com/reactiff)
