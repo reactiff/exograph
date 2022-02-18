@@ -14,7 +14,7 @@ npm install --save exograph
 
 ```jsx
 import React from 'react'
-import xo from '../exograph';
+import xo from 'exograph';
 
 export default (props) => {
 
@@ -49,4 +49,4 @@ export default (props) => {
 
 ## License
 
-MIT © [nycdude777](https://github.com/nycdude777)
+MIT © [Rick Ellis](https://github.com/reactiff)
