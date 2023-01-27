@@ -1,20 +1,9 @@
-# exograph
-
-> Exoskeleton for graphs!
-
-[![NPM](https://img.shields.io/npm/v/exograph.svg)](https://www.npmjs.com/package/exograph) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
-
-## Install
-
-```bash
-npm install --save exograph
-```
-
-## Usage
-
-```jsx
 import React from 'react'
 import xo from 'exograph';
+
+import Containers from './containers';
+import Widgets from './widgets';
+import Sources from './sources';
 
 export default (props) => {
 
@@ -35,8 +24,3 @@ export default (props) => {
         </div>
     )
 }
-```
-
-## License
-
-MIT © [Rick Ellis](https://github.com/reactiff)
