@@ -13,6 +13,7 @@ import {getGraphJson as getGraphJsonFn} from './getGraphJson';
 
 export default (props) => {
     
+    debugger
     const scope = React.useRef({
         payload: null,
         dropTarget: null,
